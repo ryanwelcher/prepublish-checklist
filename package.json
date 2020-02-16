@@ -1,0 +1,17 @@
+{
+  "name": "prepublish-checklist",
+  "version": "1.0.0",
+  "description": "Today, we are gong to be creating a plugin that will us to change the default publishing workflow that come with WordPress.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanwelcher/prepublish-checklist.git"
+  },
+  "author": "Ryan Welcher",
+  "license": "GPL v2 or later",
+  "bugs": {
+    "url": "https://github.com/ryanwelcher/prepublish-checklist/issues"
+  },
+  "homepage": "https://github.com/ryanwelcher/prepublish-checklist#readme"
+}
