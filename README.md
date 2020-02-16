@@ -16,3 +16,13 @@ So we can jump right in, please be sure you have the following at the start of t
 ### Set up.
 
 Clone the repo into your plugins directory `git clone git@github.com:ryanwelcher/prepublish-checklist.git`
+
+### Setting up the build process.
+
+1. Add the @wordpress/scripts package: `npm install @wordpress/scripts -save-dev`
+2. Add a `/src` directory at the root of the plugin.
+3. Add an `index.js` file into the new `./src` directory.
+4. Add two scripts to your package.json file:
+	* `"watch": "wp-scripts start"`
+	* `"build": "wp-scripts build"`
+5. Change the output directory to `./dist` by adding `--output-path=dist` to the scripts. ( Optional )
