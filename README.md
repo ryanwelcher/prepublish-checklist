@@ -1,5 +1,5 @@
 ## Workshop Overview
-Today, we are gong to be creating a plugin that will us to change the default publishing
+Today, we are gong to be creating a plugin that will allow us to change the default publishing
 workflow that come with WordPress.
 
 We are going to define a list of criteria that need to be fulfilled before a post can be published.
@@ -26,3 +26,8 @@ Clone the repo into your plugins directory `git clone git@github.com:ryanwelcher
 	* `"watch": "wp-scripts start"`
 	* `"build": "wp-scripts build"`
 5. Change the output directory to `./dist` by adding `--output-path=dist` to the scripts. ( Optional )
+
+### Setting up our PHP enqueues
+1. Add an action to the `enqueue_block_editor_assets` with a `enqueue_our_javascript` callback.
+2. Inside the the callback, check for the `index.asset.php` file in our `/dist` directory
+3. If found, enqueue our JavaScript using the `wp_enqueue_script` function using the dependency array and version data from the `index.asset.php` file.
