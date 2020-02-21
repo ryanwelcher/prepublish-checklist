@@ -15,10 +15,9 @@ So we can jump right in, please be sure you have the following at the start of t
 
 ### Set up.
 
-Clone the repo into your plugins directory `git clone git@github.com:ryanwelcher/prepublish-checklist.git`
+1. Clone the repo into your plugins directory `git clone git@github.com:ryanwelcher/prepublish-checklist.git`.
 
-### Setting up the build process.
-
+### 01 - Setting up the build process.
 1. Add the @wordpress/scripts package: `npm install @wordpress/scripts -save-dev`
 2. Add a `/src` directory at the root of the plugin.
 3. Add an `index.js` file into the new `./src` directory.
@@ -27,7 +26,7 @@ Clone the repo into your plugins directory `git clone git@github.com:ryanwelcher
 	* `"build": "wp-scripts build"`
 5. Change the output directory to `./dist` by adding `--output-path=dist` to the scripts. ( Optional )
 
-### Setting up our PHP enqueues
+### 02 - Setting up our PHP enqueues
 1. Add an action to the `enqueue_block_editor_assets` with a `enqueue_our_javascript` callback.
 2. Inside the the callback, check for the `index.asset.php` file in our `/dist` directory
 3. If found, enqueue our JavaScript using the `wp_enqueue_script` function using the dependency array and version data from the `index.asset.php` file.
