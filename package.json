@@ -1,17 +1,32 @@
 {
-  "name": "prepublish-checklist",
+  "name": "twitch-pre-publish-checklist",
   "version": "1.0.0",
-  "description": "Today, we are gong to be creating a plugin that will us to change the default publishing workflow that come with WordPress.",
-  "main": "index.js",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ryanwelcher/prepublish-checklist.git"
+  "description": "A pre-publish checklist for content that includes a customizable settings page.",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "scripts": {
+    "start:settings": "wp-scripts start src/admin/index.js --output-path=build/settings",
+		"start:plugin":"wp-scripts start src/plugin/index.js --output-path=build/plugin",
+    "build:settings": "wp-scripts start src/admin/index.js --output-path=build/settings",
+		"build:plugin":"wp-scripts start src/plugin/index.js --output-path=build/plugin",
+    "build": "build:settings && build:plugin",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip"
   },
+  "keywords": [],
   "author": "Ryan Welcher",
-  "license": "GPL v2 or later",
-  "bugs": {
-    "url": "https://github.com/ryanwelcher/prepublish-checklist/issues"
+  "devDependencies": {
+    "@wordpress/scripts": "^22.3.0"
   },
-  "homepage": "https://github.com/ryanwelcher/prepublish-checklist#readme"
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.4.0",
+    "@wordpress/components": "^19.7.0",
+    "@wordpress/core-data": "^4.3.0",
+    "@wordpress/data": "^6.5.0",
+    "@wordpress/element": "^4.3.0",
+    "@wordpress/i18n": "^4.5.0"
+  }
 }
