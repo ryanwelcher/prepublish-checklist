@@ -7,7 +7,7 @@ import { createReduxStore, register } from '@wordpress/data';
 import {
 	DEFAULT_STATE,
 	STATE_FROM_DATABASE,
-	SET_WORDCOUNT,
+	SET_WORD_COUNT,
 	FETCH_SETTINGS,
 	SET_FEATURED_IMAGE,
 	SET_CATEGORY,
@@ -31,11 +31,11 @@ const actions = {
 			payload: {},
 		};
 	},
-	setWordCount(wordcount) {
+	setWordCount(wordCount) {
 		return {
-			type: SET_WORDCOUNT,
+			type: SET_WORD_COUNT,
 			payload: {
-				wordcount,
+				wordCount,
 			},
 		};
 	},
@@ -71,11 +71,11 @@ function reducer(state = DEFAULT_STATE, { type, payload }) {
 				...state,
 				...payload,
 			};
-		case SET_WORDCOUNT:
-			const { wordcount } = payload;
+		case SET_WORD_COUNT:
+			const { wordCount } = payload;
 			return {
 				...state,
-				wordcount,
+				wordCount,
 			};
 		case SET_FEATURED_IMAGE:
 			const { requiredFeaturedImage } = payload;
@@ -108,7 +108,7 @@ function reducer(state = DEFAULT_STATE, { type, payload }) {
 // Define some selectors
 const selectors = {
 	getWordCount(state) {
-		return state.wordcount;
+		return state.wordCount;
 	},
 	getFeatureImageIsRequired(state) {
 		return state.requiredFeaturedImage;

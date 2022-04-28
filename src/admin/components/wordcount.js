@@ -10,7 +10,7 @@ import SettingsSection from './settings-section';
 
 const WordCount = () => {
 	// Get the count from the state.
-	const wordcount = useSelect((select) => select(STORE_NAME).getWordCount());
+	const wordCount = useSelect((select) => select(STORE_NAME).getWordCount());
 	const userPreferences = useSelect((select) =>
 		select(STORE_NAME).getUserPreferences()
 	);
@@ -32,7 +32,7 @@ const WordCount = () => {
 		>
 			<TextControl
 				label={__('Minimum Word Count', 'pre-publish-checklist')}
-				value={wordcount}
+				value={wordCount}
 				onChange={(value) => setWordCount(value)}
 			/>
 		</SettingsSection>

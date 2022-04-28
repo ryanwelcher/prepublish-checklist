@@ -47,11 +47,11 @@ const Render = () => {
 		// Get the WordCount
 		const currentWordCount = count(serialize(blocks), 'words');
 		setWordCountDisplay(currentWordCount);
-		const { wordcount, requiredFeaturedImage, requiredCategory } = settings;
+		const { wordCount, requiredFeaturedImage, requiredCategory } = settings;
 		let lockPost = false;
 
-		// if (!wordcount) return;
-		if (currentWordCount < wordcount) {
+		// if (!wordCount) return;
+		if (currentWordCount < wordCount) {
 			// If the word count is less than the required, lock the post saving.
 			lockPost = true;
 		}
