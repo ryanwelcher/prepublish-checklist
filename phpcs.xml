@@ -6,4 +6,5 @@
 	<!-- Exclude Vendor directory -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/build/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
 </ruleset>
