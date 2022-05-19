@@ -117,6 +117,7 @@ const selectors = {
 		return state.requiredCategory;
 	},
 	getSettings( state ) {
+		// eslint-disable-next-line no-unused-vars
 		const { userPreferences, ...settings } = state;
 		return settings;
 	},

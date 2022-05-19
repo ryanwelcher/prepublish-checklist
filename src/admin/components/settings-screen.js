@@ -4,6 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { Button, Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
+// eslint-disable-next-line no-unused-vars
 import { useEntityProp } from '@wordpress/core-data'; // do I need this?
 /**
  * Internal dependencies

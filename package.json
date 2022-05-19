@@ -7,9 +7,12 @@
 	"scripts": {
 		"start": "wp-scripts start",
 		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
+		"format:js": "wp-scripts format",
+		"format:php": "composer run format",
+		"format": "npm run format:js && npm run format:php",
 		"lint:js": "wp-scripts lint-js",
+		"lint:php": "composer run lint",
+		"lint": "npm run lint:js && npm run lint:php",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip"
 	},
@@ -22,5 +25,7 @@
 		"prettier": "npm:wp-prettier@2.2.1-beta-1"
 	},
 	"prettier": "@wordpress/prettier-config",
-	"dependencies": {}
+	"dependencies": {
+		"@wordpress/icons": "^9.0.0"
+	}
 }
