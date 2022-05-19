@@ -2,7 +2,13 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Button, Panel, PanelBody, PanelRow } from '@wordpress/components';
+import {
+	Button,
+	Panel,
+	PanelBody,
+	PanelRow,
+	Spinner,
+} from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
 // eslint-disable-next-line no-unused-vars
 import { useEntityProp } from '@wordpress/core-data'; // do I need this?
@@ -16,16 +22,18 @@ import Category from './category';
 import { STORE_NAME } from '../datastore/constants';
 
 const SettingsScreen = () => {
-	const { saveEntityRecord } = useDispatch( 'core' );
-
 	// Gets all settings from the store.
-	const settingsFromState = useSelect( ( select ) =>
-		select( STORE_NAME ).getSettings()
-	);
+	const { isSaving, settingsFromState } = useSelect( ( select ) => {
+		return {
+			settingsFromState: select( STORE_NAME ).getSettings(),
+			isSaving: select( STORE_NAME ).getIsSaving(),
+		};
+	} );
 
-	// This is bad, we need a better loading process.
+	const { saveSettings } = useDispatch( STORE_NAME );
+
 	if ( ! settingsFromState ) {
-		return 'LOADING';
+		return <Spinner />;
 	}
 
 	return (
@@ -36,17 +44,18 @@ const SettingsScreen = () => {
 				<Category />
 				<PanelBody>
 					<PanelRow>
-						<Button
-							variant="primary"
-							onClick={ () => {
-								// This actually saves to the database
-								saveEntityRecord( 'root', 'site', {
-									'pre-publish-checklist_data': settingsFromState,
-								} );
-							} }
-						>
-							{ __( 'SAVE', 'pre-publish-checklist' ) }
-						</Button>
+						{ isSaving ? (
+							<Spinner />
+						) : (
+							<Button
+								variant="primary"
+								onClick={ () => {
+									saveSettings( settingsFromState );
+								} }
+							>
+								{ __( 'SAVE', 'pre-publish-checklist' ) }
+							</Button>
+						) }
 					</PanelRow>
 				</PanelBody>
 			</Panel>

@@ -13,6 +13,7 @@ import {
 	SET_CATEGORY,
 	SET_USER_PREFERENCES,
 	STORE_NAME,
+	IS_SAVING,
 } from './constants';
 
 // Define our actions
@@ -71,11 +72,40 @@ const actions = {
 			} );
 		};
 	},
+	setIsSaving( status ) {
+		return {
+			type: IS_SAVING,
+			payload: {
+				status,
+			},
+		};
+	},
+	saveSettings( { wordCount, requiredFeaturedImage, requiredCategory } ) {
+		return async function ( { dispatch, registry } ) {
+			dispatch.setIsSaving( true );
+			await registry
+				.dispatch( 'core' )
+				.saveEntityRecord( 'root', 'site', {
+					'pre-publish-checklist_data': {
+						wordCount,
+						requiredFeaturedImage,
+						requiredCategory,
+					},
+				} );
+			dispatch.setIsSaving( false );
+		};
+	},
 };
 
 // Define the reducer
 function reducer( state = DEFAULT_STATE, { type, payload } ) {
 	switch ( type ) {
+		case IS_SAVING:
+			const { status } = payload;
+			return {
+				...state,
+				isSaving: status,
+			};
 		case STATE_FROM_DATABASE:
 			return {
 				...state,
@@ -133,6 +163,9 @@ const selectors = {
 	},
 	getUserPreferences( state ) {
 		return state.userPreferences;
+	},
+	getIsSaving( state ) {
+		return state.isSaving;
 	},
 };
 
