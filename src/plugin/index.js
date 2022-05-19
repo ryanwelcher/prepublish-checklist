@@ -88,7 +88,7 @@ const Render = () => {
 		>
 			<WordCountDisplayComponent
 				wordCount={ wordCountDisplay }
-				required={ settings.wordcount }
+				required={ settings.wordCount }
 			/>
 			{ settings.requiredFeaturedImage && (
 				<FeaturedImageDisplay featuredImageID={ featuredImageID } />
