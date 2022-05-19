@@ -53,10 +53,9 @@ add_action(
 				$assets['version'],
 				true
 			);
-		}
-
-		foreach ( $assets['dependencies'] as $style ) {
-			wp_enqueue_style( $style );
+			foreach ( $assets['dependencies'] as $style ) {
+				wp_enqueue_style( $style );
+			}
 		}
 	}
 );
@@ -101,7 +100,7 @@ function register_my_setting() {
 				'schema' => array(
 					'type'       => 'object',
 					'properties' => array(
-						'wordcount'             => array(
+						'wordCount'             => array(
 							'type' => 'integer',
 						),
 						'requiredFeaturedImage' => array(
