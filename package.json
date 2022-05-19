@@ -1,26 +1,26 @@
 {
-  "name": "twitch-pre-publish-checklist",
-  "version": "1.0.0",
-  "description": "A pre-publish checklist for content that includes a customizable settings page.",
-  "license": "GPL-2.0-or-later",
-  "main": "build/index.js",
-  "scripts": {
-    "start:settings": "wp-scripts start src/admin/index.js --output-path=build/settings",
-    "start:plugin": "wp-scripts start src/plugin/index.js --output-path=build/plugin",
-    "build:settings": "wp-scripts start src/admin/index.js --output-path=build/settings",
-    "build:plugin": "wp-scripts start src/plugin/index.js --output-path=build/plugin",
-    "build": "build:settings && build:plugin",
-    "format": "wp-scripts format",
-    "lint:css": "wp-scripts lint-style",
-    "lint:js": "wp-scripts lint-js",
-    "packages-update": "wp-scripts packages-update",
-    "plugin-zip": "wp-scripts plugin-zip"
-  },
-  "keywords": [],
-  "author": "Ryan Welcher",
-  "devDependencies": {
-    "@wordpress/env": "^4.7.0",
-    "@wordpress/scripts": "^23.1.0"
-  },
-  "dependencies": {}
+	"name": "twitch-pre-publish-checklist",
+	"version": "1.0.0",
+	"description": "A pre-publish checklist for content that includes a customizable settings page.",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"start": "wp-scripts start",
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip"
+	},
+	"keywords": [],
+	"author": "Ryan Welcher",
+	"devDependencies": {
+		"@wordpress/env": "^4.7.0",
+		"@wordpress/scripts": "^23.1.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"prettier": "npm:wp-prettier@2.2.1-beta-1"
+	},
+	"prettier": "@wordpress/prettier-config",
+	"dependencies": {}
 }
