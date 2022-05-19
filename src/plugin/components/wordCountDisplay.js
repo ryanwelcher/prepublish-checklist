@@ -1,14 +1,16 @@
-import { Icon, check, closeSmall } from '@wordpress/icons';
+/**
+ *  WordPress dependencies
+ */
+import { PanelRow } from '@wordpress/components';
+import { Icon, check, warning } from '@wordpress/icons';
+
 const WordCountDisplayComponent = ( { wordCount, required } ) => {
 	const locked = wordCount < required;
 	return (
-		<div style={ { display: 'flex' } }>
-			{ ! locked && <Icon icon={ check } /> }
-			{ locked && <Icon icon={ closeSmall } /> }
-			<span
-				style={ { marginTop: '3px' } }
-			>{ `WordCount: ${ wordCount }` }</span>
-		</div>
+		<PanelRow>
+			{ ` ${ wordCount } of ${ required } required words.` }
+			{ locked ? <Icon icon={ warning } /> : <Icon icon={ check } /> }
+		</PanelRow>
 	);
 };
 

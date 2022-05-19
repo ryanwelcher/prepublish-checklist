@@ -1,4 +1,8 @@
-import { Icon, check, closeSmall } from '@wordpress/icons';
+/**
+ *  WordPress dependencies
+ */
+import { PanelRow } from '@wordpress/components';
+import { Icon, check, warning } from '@wordpress/icons';
 
 const CategoriesDisplay = ( { categories } ) => {
 	const locked = ! categories.length || categories.includes( 1 );
@@ -9,18 +13,17 @@ const CategoriesDisplay = ( { categories } ) => {
 				return 'Please assign a category.';
 			}
 
-			// if (categories.includes(1)) {
-			// 	return 'Categories cannot include Uncategorized';
-			// }
+			if ( categories.includes( 1 ) ) {
+				return 'Categories cannot include Uncategorized';
+			}
 		}
 		return 'Categories assigned correctly';
 	};
 	return (
-		<div style={ { display: 'flex' } }>
-			{ ! locked && <Icon icon={ check } /> }
-			{ locked && <Icon icon={ closeSmall } /> }
-			<span style={ { marginTop: '3px' } }>{ generateMessage() }</span>
-		</div>
+		<PanelRow>
+			{ generateMessage() }
+			{ locked ? <Icon icon={ warning } /> : <Icon icon={ check } /> }
+		</PanelRow>
 	);
 };
 
