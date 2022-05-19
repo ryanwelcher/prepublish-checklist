@@ -43,12 +43,12 @@ function render_settings_page() {
 add_action(
 	'admin_enqueue_scripts',
 	function( $suffix ) {
-		$asset_file_page = plugin_dir_path( __FILE__ ) . 'build/settings/index.asset.php';
+		$asset_file_page = plugin_dir_path( __FILE__ ) . 'build/admin.asset.php';
 		if ( file_exists( $asset_file_page ) && 'toplevel_page_pre-publish-checklist' === $suffix ) {
 			$assets = require_once $asset_file_page;
 			wp_enqueue_script(
 				'pre-publish-settings-script',
-				plugin_dir_url( __FILE__ ) . 'build/settings/index.js',
+				plugin_dir_url( __FILE__ ) . 'build/admin.js',
 				$assets['dependencies'],
 				$assets['version'],
 				true
@@ -65,12 +65,12 @@ add_action(
 add_action(
 	'enqueue_block_editor_assets',
 	function() {
-		$asset_file_path = plugin_dir_path( __FILE__ ) . 'build/plugin/index.asset.php';
+		$asset_file_path = plugin_dir_path( __FILE__ ) . 'build/plugin.asset.php';
 		if ( file_exists( $asset_file_path ) ) {
 			$assets = require_once $asset_file_path;
 			wp_enqueue_script(
 				'pre-publish-plugin-script',
-				plugin_dir_url( __FILE__ ) . 'build/plugin/index.js',
+				plugin_dir_url( __FILE__ ) . 'build/plugin.js',
 				$assets['dependencies'],
 				$assets['version'],
 				true
@@ -112,7 +112,7 @@ function register_my_setting() {
 						),
 					),
 				),
-		),
+			),
 		)
 	);
 }
