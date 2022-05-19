@@ -13,6 +13,7 @@
 		"lint:js": "wp-scripts lint-js",
 		"lint:php": "composer run lint",
 		"lint": "npm run lint:js && npm run lint:php",
+		"env": "wp-env",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip"
 	},
