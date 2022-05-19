@@ -18,7 +18,7 @@ const WordCount = () => {
 	);
 
 	// Update the state.
-	const { setWordCount, setUserPreferences } = useDispatch( STORE_NAME );
+	const { setWordCount, setToggleState } = useDispatch( STORE_NAME );
 
 	const { showWordCount } = userPreferences || { showWordCount: false };
 	return (
@@ -26,10 +26,7 @@ const WordCount = () => {
 			title="Word Count Options"
 			initialOpen={ showWordCount }
 			onToggle={ () => {
-				setUserPreferences( {
-					...userPreferences,
-					showWordCount: ! showWordCount,
-				} );
+				setToggleState( 'showWordCount', ! showWordCount );
 			} }
 		>
 			<TextControl

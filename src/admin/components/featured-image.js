@@ -18,7 +18,7 @@ const FeaturedImage = () => {
 	);
 
 	// Update the state.
-	const { setFeaturedImageIsRequired, setUserPreferences } = useDispatch(
+	const { setFeaturedImageIsRequired, setToggleState } = useDispatch(
 		STORE_NAME
 	);
 
@@ -30,10 +30,7 @@ const FeaturedImage = () => {
 			title="Featured Image Options"
 			initialOpen={ showFeaturedImage }
 			onToggle={ () => {
-				setUserPreferences( {
-					...userPreferences,
-					showFeaturedImage: ! showFeaturedImage,
-				} );
+				setToggleState( 'showFeaturedImage', ! showFeaturedImage );
 			} }
 		>
 			<ToggleControl

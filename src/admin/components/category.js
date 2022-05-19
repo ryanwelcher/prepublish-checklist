@@ -21,9 +21,7 @@ const Category = () => {
 	);
 
 	// Update the state.
-	const { setCategoryRequired, setUserPreferences } = useDispatch(
-		STORE_NAME
-	);
+	const { setCategoryRequired, setToggleState } = useDispatch( STORE_NAME );
 
 	const { showCategory } = userPreferences || {
 		showCategory: false,
@@ -33,10 +31,7 @@ const Category = () => {
 			title="Category Options"
 			initialOpen={ showCategory }
 			onToggle={ () => {
-				setUserPreferences( {
-					...userPreferences,
-					showCategory: ! showCategory,
-				} );
+				setToggleState( 'showCategory', ! showCategory );
 			} }
 		>
 			<ToggleControl
