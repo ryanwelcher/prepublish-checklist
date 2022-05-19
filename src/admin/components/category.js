@@ -13,15 +13,17 @@ import SettingsSection from './settings-section';
 
 const Category = () => {
 	// Get the count from the state.
-	const requiredCategory = useSelect((select) =>
-		select(STORE_NAME).getCategoryIsRequired()
+	const requiredCategory = useSelect( ( select ) =>
+		select( STORE_NAME ).getCategoryIsRequired()
 	);
-	const userPreferences = useSelect((select) =>
-		select(STORE_NAME).getUserPreferences()
+	const userPreferences = useSelect( ( select ) =>
+		select( STORE_NAME ).getUserPreferences()
 	);
 
 	// Update the state.
-	const { setCategoryRequired, setUserPreferences } = useDispatch(STORE_NAME);
+	const { setCategoryRequired, setUserPreferences } = useDispatch(
+		STORE_NAME
+	);
 
 	const { showCategory } = userPreferences || {
 		showCategory: false,
@@ -29,20 +31,20 @@ const Category = () => {
 	return (
 		<SettingsSection
 			title="Category Options"
-			initialOpen={showCategory}
-			onToggle={() => {
-				setUserPreferences({
+			initialOpen={ showCategory }
+			onToggle={ () => {
+				setUserPreferences( {
 					...userPreferences,
-					showCategory: !showCategory,
-				});
-			}}
+					showCategory: ! showCategory,
+				} );
+			} }
 		>
 			<ToggleControl
-				label={__('Require Category', 'pre-publish-checklist')}
-				checked={requiredCategory}
-				onChange={() => {
-					setCategoryRequired(!requiredCategory);
-				}}
+				label={ __( 'Require Category', 'pre-publish-checklist' ) }
+				checked={ requiredCategory }
+				onChange={ () => {
+					setCategoryRequired( ! requiredCategory );
+				} }
 			/>
 		</SettingsSection>
 	);

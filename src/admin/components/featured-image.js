@@ -10,16 +10,17 @@ import SettingsSection from './settings-section';
 
 const FeaturedImage = () => {
 	// Get the count from the state.
-	const imageRequired = useSelect((select) =>
-		select(STORE_NAME).getFeatureImageIsRequired()
+	const imageRequired = useSelect( ( select ) =>
+		select( STORE_NAME ).getFeatureImageIsRequired()
 	);
-	const userPreferences = useSelect((select) =>
-		select(STORE_NAME).getUserPreferences()
+	const userPreferences = useSelect( ( select ) =>
+		select( STORE_NAME ).getUserPreferences()
 	);
 
 	// Update the state.
-	const { setFeaturedImageIsRequired, setUserPreferences } =
-		useDispatch(STORE_NAME);
+	const { setFeaturedImageIsRequired, setUserPreferences } = useDispatch(
+		STORE_NAME
+	);
 
 	const { showFeaturedImage } = userPreferences || {
 		showFeaturedImage: false,
@@ -27,20 +28,23 @@ const FeaturedImage = () => {
 	return (
 		<SettingsSection
 			title="Featured Image Options"
-			initialOpen={showFeaturedImage}
-			onToggle={() => {
-				setUserPreferences({
+			initialOpen={ showFeaturedImage }
+			onToggle={ () => {
+				setUserPreferences( {
 					...userPreferences,
-					showFeaturedImage: !showFeaturedImage,
-				});
-			}}
+					showFeaturedImage: ! showFeaturedImage,
+				} );
+			} }
 		>
 			<ToggleControl
-				label={__('Require Featured Image', 'pre-publish-checklist')}
-				checked={imageRequired}
-				onChange={() => {
-					setFeaturedImageIsRequired(!imageRequired);
-				}}
+				label={ __(
+					'Require Featured Image',
+					'pre-publish-checklist'
+				) }
+				checked={ imageRequired }
+				onChange={ () => {
+					setFeaturedImageIsRequired( ! imageRequired );
+				} }
 			/>
 		</SettingsSection>
 	);

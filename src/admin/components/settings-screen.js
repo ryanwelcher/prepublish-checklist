@@ -15,15 +15,15 @@ import Category from './category';
 import { STORE_NAME } from '../datastore/constants';
 
 const SettingsScreen = () => {
-	const { saveEntityRecord } = useDispatch('core');
+	const { saveEntityRecord } = useDispatch( 'core' );
 
 	// Gets all settings from the store.
-	const settingsFromState = useSelect((select) =>
-		select(STORE_NAME).getSettings()
+	const settingsFromState = useSelect( ( select ) =>
+		select( STORE_NAME ).getSettings()
 	);
 
 	// This is bad, we need a better loading process.
-	if (!settingsFromState) {
+	if ( ! settingsFromState ) {
 		return 'LOADING';
 	}
 
@@ -37,15 +37,14 @@ const SettingsScreen = () => {
 					<PanelRow>
 						<Button
 							variant="primary"
-							onClick={() => {
+							onClick={ () => {
 								// This actually saves to the database
-								saveEntityRecord('root', 'site', {
-									'pre-publish-checklist_data':
-										settingsFromState,
-								});
-							}}
+								saveEntityRecord( 'root', 'site', {
+									'pre-publish-checklist_data': settingsFromState,
+								} );
+							} }
 						>
-							{__('SAVE', 'pre-publish-checklist')}
+							{ __( 'SAVE', 'pre-publish-checklist' ) }
 						</Button>
 					</PanelRow>
 				</PanelBody>

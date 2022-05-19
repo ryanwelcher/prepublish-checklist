@@ -10,30 +10,32 @@ import SettingsSection from './settings-section';
 
 const WordCount = () => {
 	// Get the count from the state.
-	const wordCount = useSelect((select) => select(STORE_NAME).getWordCount());
-	const userPreferences = useSelect((select) =>
-		select(STORE_NAME).getUserPreferences()
+	const wordCount = useSelect( ( select ) =>
+		select( STORE_NAME ).getWordCount()
+	);
+	const userPreferences = useSelect( ( select ) =>
+		select( STORE_NAME ).getUserPreferences()
 	);
 
 	// Update the state.
-	const { setWordCount, setUserPreferences } = useDispatch(STORE_NAME);
+	const { setWordCount, setUserPreferences } = useDispatch( STORE_NAME );
 
 	const { showWordCount } = userPreferences || { showWordCount: false };
 	return (
 		<SettingsSection
 			title="Word Count Options"
-			initialOpen={showWordCount}
-			onToggle={() => {
-				setUserPreferences({
+			initialOpen={ showWordCount }
+			onToggle={ () => {
+				setUserPreferences( {
 					...userPreferences,
-					showWordCount: !showWordCount,
-				});
-			}}
+					showWordCount: ! showWordCount,
+				} );
+			} }
 		>
 			<TextControl
-				label={__('Minimum Word Count', 'pre-publish-checklist')}
-				value={wordCount}
-				onChange={(value) => setWordCount(value)}
+				label={ __( 'Minimum Word Count', 'pre-publish-checklist' ) }
+				value={ wordCount }
+				onChange={ ( value ) => setWordCount( value ) }
 			/>
 		</SettingsSection>
 	);

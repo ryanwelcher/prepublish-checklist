@@ -11,5 +11,5 @@ import SettingsScreen from './components/settings-screen';
 // Render the app to the screen.
 render(
 	<SettingsScreen />,
-	document.getElementById('twitch-pre-publish-checklist')
+	document.getElementById( 'twitch-pre-publish-checklist' )
 );
