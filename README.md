@@ -38,7 +38,7 @@ This screen is pre-built ( the code is in the `./src/admin` directory ) and will
 ### Plugin
 This section contains all of the logic and SlotFills that make up the functionality of the pre-publish checklist and is where we will be spending our time today.
 
-## Section 1 - Registering our plugin
+## **Section 1 - Registering our plugin**
 
 We're going to be leveraging the SlotFill fill system and the `@wordpress/plugins` api to introduce our code the Block Editor.
 
@@ -68,7 +68,7 @@ const Render = () => {
 7. Reload the page and we should see our message in the controls. Our code is now running in the Block Editor! 🥳 🥳 🥳 🥳 🥳. Let's move on!
 
 
-## Section  2 - Getting information out of the datastore
+## **Section  2 - Getting information out of the datastore**
 
 Before we can determine if we want to stop the post from being published, we need to get some information the Block Editor that we can check to make that decision. To do that, we need to use the `@wordpress/data` package and specifically the `useSelect` hook.
 
@@ -168,7 +168,7 @@ const Render = () => {
 }
 ```
 7. Reload the page and we should see that our messages are updating whenever we make changes to the list of blocks, the assigned categories or the Featured image. **Great Success!!!** 🔥🔥🔥🔥🔥🔥
-## Section  3 - Restricting publishing
+## **Section  3 - Restricting publishing**
 Now that we have the data we need to check, we can make decisions on whether the post should be locked.
 
 1. Let's start by adding a new variable called `lockPost` to our `useEffect` that will used to determine if the post should be locked. We are defining the variable using `let` so we can change its value later and setting the initial value to `false` each time the `useEffect` is called.
@@ -260,7 +260,7 @@ useEffect( () => {
 		}
 }, [ blocks, categories, featuredImageID ] );
 ```
-## Section  4 - Creating a UI to provide feedback to the user.
+## **Section  4 - Creating a UI to provide feedback to the user.**
 Up to now, we have not provided any feedback to the user. Let's change that by adding a UI that will give the user some feedback so they know why the post is not allowed to be saved or published.
 
 1. We're going to add a new panel to the Settings sidebar so let's import the correct SlotFill. We'll also need a i18n function so we'll import it as well.
