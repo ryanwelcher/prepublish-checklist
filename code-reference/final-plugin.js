@@ -66,7 +66,7 @@ const Render = () => {
 		}
 
 		// Check that there a category assigned to the post.
-		if ( requiredCategory && categories.length ) {
+		if ( requiredCategory && ! categories.length ) {
 			lockPost = true;
 		}
 
