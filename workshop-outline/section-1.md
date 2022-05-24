@@ -16,7 +16,12 @@ registerPlugin( 'wceu-2022-prepublish-checklist', {
 	render: Render,
 } );
 ```
-6. import the `useEffect` hook from `@wordpress/element` and create a useEffect hook in the `Render` component that outputs a message.
+6. Import the `useEffect` hook from `@wordpress/element`
+```javascript
+import { useEffect } from '@wordpress/element';
+```
+
+7. create a useEffect hook in the `Render` component that outputs a message.
 ```javascript
 const Render = () => {
 	useEffect( () => {
@@ -25,7 +30,7 @@ const Render = () => {
 	return null;
 };
 ```
-7. Reload the page and we should see our message in the controls. Our code is now running in the Block Editor! 🥳 🥳 🥳 🥳 🥳. Let's move on!
+8. Reload the page and we should see our message in the controls. Our code is now running in the Block Editor! 🥳 🥳 🥳 🥳 🥳. Let's move on!
 
 # Ready to move on?
 [Section 2: Getting information out of the datastore](./section-2.md)
