@@ -65,5 +65,5 @@ if ( requiredCategory && categories.length ) {
 
 ## 🎉🎉🎉 **CONGRATULATIONS!!! You have a working pre-publish checklist!!** 🎉🎉🎉
 
-## Missing something from the last section?
+# Missing something from the last section?
 [Section 4: Creating a UI to provide feedback to the user](./section-4.md)

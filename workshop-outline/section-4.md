@@ -93,5 +93,5 @@ return (
 
 # Ready to move on?
 [Section 5: Tying in our custom admin page](./section-5.md)
-## Missing something from the last section?
+# Missing something from the last section?
 [Section 3: Restricting publishing](./section-3.md)
