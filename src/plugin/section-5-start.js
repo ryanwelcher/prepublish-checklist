@@ -16,17 +16,8 @@ import WordCountDisplayComponent from './components/wordCountDisplay';
 import FeaturedImageDisplay from './components/featuredImageDisplay';
 import CategoriesDisplay from './components/categoriesDisplay';
 
-// Pull the store into the plugin
-import '../admin/datastore';
-import { STORE_NAME } from '../admin/datastore/constants';
-
 const Render = () => {
-	const {
-		blocks,
-		categories,
-		featuredImageID,
-		settings: { wordCount, requiredFeaturedImage, requiredCategory },
-	} = useSelect( ( select ) => {
+	const { blocks, categories, featuredImageID } = useSelect( ( select ) => {
 		return {
 			blocks: select( 'core/block-editor' ).getBlocks(),
 			categories: select( 'core/editor' ).getEditedPostAttribute(
@@ -35,7 +26,6 @@ const Render = () => {
 			featuredImageID: select( 'core/editor' ).getEditedPostAttribute(
 				'featured_media'
 			),
-			settings: select( STORE_NAME ).getSettings(),
 		};
 	} );
 
@@ -51,22 +41,21 @@ const Render = () => {
 	useEffect( () => {
 		// Define a variable to track whether the post should be locked
 		let lockPost = false;
-
 		// Get the WordCount
 		const currentWordCount = count( serialize( blocks ), 'words' );
 		setWordCountDisplay( currentWordCount );
 
 		// If the word count is less than the required, lock the post saving.
-		if ( currentWordCount < wordCount ) {
+		if ( currentWordCount < 500 ) {
 			lockPost = true;
 		}
 		// Does the post have a featured image?
-		if ( requiredFeaturedImage && featuredImageID === 0 ) {
+		if ( featuredImageID === 0 ) {
 			lockPost = true;
 		}
 
 		// Check that there a category assigned to the post.
-		if ( requiredCategory && categories.length ) {
+		if ( categories.length ) {
 			lockPost = true;
 		}
 
@@ -88,14 +77,12 @@ const Render = () => {
 		>
 			<WordCountDisplayComponent
 				wordCount={ wordCountDisplay }
-				required={ wordCount }
+				required={ 500 }
 			/>
-			{ requiredFeaturedImage && (
-				<FeaturedImageDisplay featuredImageID={ featuredImageID } />
-			) }
-			{ requiredCategory && (
-				<CategoriesDisplay categories={ categories } />
-			) }
+
+			<FeaturedImageDisplay featuredImageID={ featuredImageID } />
+
+			<CategoriesDisplay categories={ categories } />
 		</PluginDocumentSettingPanel>
 	);
 };
