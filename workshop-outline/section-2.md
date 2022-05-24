@@ -104,3 +104,5 @@ const Render = () => {
 
 # Ready to move on?
 [Section 3: Restricting publishing](./section-3.md)
+## Missing something from the last section?
+[Section 1: Registering our plugin](./section-1.md)

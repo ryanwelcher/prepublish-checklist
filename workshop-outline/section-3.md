@@ -90,5 +90,8 @@ useEffect( () => {
 		}
 }, [ blocks, categories, featuredImageID ] );
 ```
-# Ready to move on?
+## Ready to move on?
 [Section 4: Creating a UI to provide feedback to the user](./section-4.md)
+
+## Missing something from the last section?
+[Section 2: Getting information out of the datastore](./section-2.md)
