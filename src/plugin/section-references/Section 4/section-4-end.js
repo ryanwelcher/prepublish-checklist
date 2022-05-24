@@ -1,15 +1,20 @@
 /**
  * WordPress dependencies
  */
-import { useEffect } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { registerPlugin } from '@wordpress/plugins';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { count } from '@wordpress/wordcount';
 import { serialize } from '@wordpress/blocks';
+import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
  */
+import WordCountDisplayComponent from './components/wordCountDisplay';
+import FeaturedImageDisplay from './components/featuredImageDisplay';
+import CategoriesDisplay from './components/categoriesDisplay';
 
 const Render = () => {
 	const { blocks, categories, featuredImageID } = useSelect( ( select ) => {
@@ -31,11 +36,14 @@ const Render = () => {
 		disablePublishSidebar,
 	} = useDispatch( 'core/editor' );
 
+	const [ wordCountDisplay, setWordCountDisplay ] = useState( '' );
+
 	useEffect( () => {
 		// Define a variable to track whether the post should be locked
 		let lockPost = false;
 		// Get the WordCount
 		const currentWordCount = count( serialize( blocks ), 'words' );
+		setWordCountDisplay( currentWordCount );
 
 		// If the word count is less than the required, lock the post saving.
 		if ( currentWordCount < 500 ) {
@@ -47,7 +55,7 @@ const Render = () => {
 		}
 
 		// Check that there a category assigned to the post.
-		if ( categories.length ) {
+		if ( ! categories.length ) {
 			lockPost = true;
 		}
 
@@ -61,7 +69,22 @@ const Render = () => {
 		}
 	}, [ blocks, categories, featuredImageID ] );
 
-	return null;
+	return (
+		<PluginDocumentSettingPanel
+			name="prepublish-checklist"
+			title={ __( 'Prepublish Checklist', 'pre-publish-checklist' ) }
+			className="prepublish-checklist"
+		>
+			<WordCountDisplayComponent
+				wordCount={ wordCountDisplay }
+				required={ 500 }
+			/>
+
+			<FeaturedImageDisplay featuredImageID={ featuredImageID } />
+
+			<CategoriesDisplay categories={ categories } />
+		</PluginDocumentSettingPanel>
+	);
 };
 
 registerPlugin( 'wceu-2022-prepublish-checklist', {

@@ -3,7 +3,7 @@
  */
 import { useEffect } from '@wordpress/element';
 import { registerPlugin } from '@wordpress/plugins';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { count } from '@wordpress/wordcount';
 import { serialize } from '@wordpress/blocks';
 
@@ -24,16 +24,41 @@ const Render = () => {
 		};
 	} );
 
+	const {
+		lockPostSaving,
+		unlockPostSaving,
+		enablePublishSidebar,
+		disablePublishSidebar,
+	} = useDispatch( 'core/editor' );
+
 	useEffect( () => {
+		// Define a variable to track whether the post should be locked
+		let lockPost = false;
 		// Get the WordCount
 		const currentWordCount = count( serialize( blocks ), 'words' );
-		console.log( `There are ${ currentWordCount } words` );
 
+		// If the word count is less than the required, lock the post saving.
+		if ( currentWordCount < 500 ) {
+			lockPost = true;
+		}
 		// Does the post have a featured image?
-		console.log( 'Featured image?', featuredImageID === 0 );
+		if ( featuredImageID === 0 ) {
+			lockPost = true;
+		}
 
 		// Check that there a category assigned to the post.
-		console.log( 'Categories assigned?', categories.length );
+		if ( ! categories.length ) {
+			lockPost = true;
+		}
+
+		//Lock or enable saving
+		if ( lockPost === true ) {
+			lockPostSaving();
+			disablePublishSidebar();
+		} else {
+			unlockPostSaving();
+			enablePublishSidebar();
+		}
 	}, [ blocks, categories, featuredImageID ] );
 
 	return null;
