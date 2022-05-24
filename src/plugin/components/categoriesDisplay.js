@@ -5,7 +5,8 @@ import { PanelRow } from '@wordpress/components';
 import { Icon, check, warning } from '@wordpress/icons';
 
 const CategoriesDisplay = ( { categories } ) => {
-	const locked = ! categories.length || categories.includes( 1 );
+	// const locked = ! categories.length || categories.includes( 1 );
+	const locked = ! categories.length;
 
 	const generateMessage = () => {
 		if ( locked ) {
@@ -13,9 +14,9 @@ const CategoriesDisplay = ( { categories } ) => {
 				return 'Please assign a category.';
 			}
 
-			if ( categories.includes( 1 ) ) {
-				return 'Categories cannot include Uncategorized';
-			}
+			// if ( categories.includes( 1 ) ) {
+			// 	return 'Categories cannot include Uncategorized';
+			// }
 		}
 		return 'Categories assigned correctly';
 	};
