@@ -64,6 +64,3 @@ if ( requiredCategory && categories.length ) {
 ```
 
 ## 🎉🎉🎉🎉🎉🎉 **CONGRATULATIONS!!! You have a working pre-publish checklist!!** 🎉🎉🎉🎉
-
-
-[Back: Section 4: Creating a UI to provide feedback to the user](./section-4.md)
