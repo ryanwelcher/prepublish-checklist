@@ -91,5 +91,4 @@ return (
 ```
 9. Test out the new panel and confirm that the logic is working and that the feedback is correct.
 
-## Next Section
-Go to [Section 5](./workshop-outline/section 5.md)
+[Back: Section 3: Restricting publishing](./section-3.md) | [Next: Section 5: Tying in our custom admin page](./section-5.md)

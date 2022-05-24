@@ -28,5 +28,4 @@ const Render = () => {
 7. Reload the page and we should see our message in the controls. Our code is now running in the Block Editor! 🥳 🥳 🥳 🥳 🥳. Let's move on!
 
 
-## Next Section
-Go to [Section 2](./workshop-outline/section-2.md)
+[Next: Section 2: Getting information out of the datastore](./section-2.md)
