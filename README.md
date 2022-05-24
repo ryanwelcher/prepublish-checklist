@@ -155,13 +155,16 @@ const Render = () => {
 	useEffect( () => {
 		// Get the WordCount
 		const currentWordCount = count( serialize( blocks ), 'words' );
-		console.log( `There are ${currentWordCount} words` )
+		console.log( `There are ${ currentWordCount } words` );
 
 		// Does the post have a featured image?
-		console.log( 'Featured image?', featuredImageID === 0 )
+		console.log( 'Featured image?', featuredImageID === 0 ? 'No' : 'Yes' );
 
 		// Check that there a category assigned to the post.
-		console.log( 'Categories assigned?', categories.length )
+		console.log(
+			'Categories assigned?',
+			categories.length ? categories.length : 'No'
+		);
 	}, [ blocks, categories, featuredImageID ] );
 
 	return null;
@@ -246,7 +249,7 @@ useEffect( () => {
 		}
 
 		// Check that there a category assigned to the post.
-		if ( categories.length ) {
+		if ( ! categories.length ) {
 			lockPost = true;
 		}
 
