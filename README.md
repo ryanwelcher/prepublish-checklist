@@ -1,7 +1,5 @@
 # Creating a Pre-publish Checklist in Gutenberg Workshop - WCEU 2022
 
-
-
 ## Pre-Workshop Setup Checklist
 
 Before arriving on the day of the workshop, please ensure you have the following in place ( this is meant to help avoid wifi issues on the day):
@@ -9,7 +7,7 @@ Before arriving on the day of the workshop, please ensure you have the following
 1. Ensure you have Composer and Node version 16 installed on your laptop. I would strongly recommend using [Node Version Manager ( NVM )](https://github.com/nvm-sh/nvm) to manage your node versions. ( If Composer is an issue, it is technically optional. We will need Node however ).
 2. A working local development environment running the latest version of WordPress. I will be using [LocalWP](https://localwp.com/) but you can use anything you're comfortable with.
 3. The code from either this repo, or a fork of it, cloned into the `wp-content/plugins/` directory. ( i.e `git clone https://github.com/ryanwelcher/prepublish-checklist wp-content/plugins` from the root of your WordPress installation )
-4. Run `npm install --force` and `composer install` to dowload all of the dependencies.
+4. Run `npm install --force` and `composer install` to download all of the dependencies.
 
 
 ## Welcome!
@@ -37,6 +35,10 @@ This screen is pre-built ( the code is in the `./src/admin` directory ) and will
 
 ### Plugin
 This section contains all of the logic and SlotFills that make up the functionality of the pre-publish checklist and is where we will be spending our time today.
+
+## **Structure and Reference Code**
+All of the code needed for todays workshop is available in this readme. There are 5 sections to the workshop that each build off of the work done in the previous section.
+For reference, there are directories available in `./code-reference` for each section that contain the code that you should have at the beginning the section (`section-2-begin.js`) and the code that you have at the end of section (`section-2-end.js`). If you become lost or just want a clean start to a section, feel free to copy and paste away!
 
 ## **Section 1 - Registering our plugin**
 
@@ -355,7 +357,7 @@ return (
 );
 ```
 9. Test out the new panel and confirm that the logic is working and that the feedback is correct.
-## 🎉🎉🎉🎉🎉🎉 **CONGRATULATIONS!!! You have a working pre-publish checklist!!** 🎉🎉🎉🎉
+
 
 ## **Section  5 - Tying in our custom admin page.**
 
@@ -420,3 +422,6 @@ if ( requiredCategory && categories.length ) {
 	<CategoriesDisplay categories={ categories } />
 ) }
 ```
+
+
+## 🎉🎉🎉🎉🎉🎉 **CONGRATULATIONS!!! You have a working pre-publish checklist!!** 🎉🎉🎉🎉
