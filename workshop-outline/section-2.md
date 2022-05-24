@@ -102,5 +102,5 @@ const Render = () => {
 ```
 7. Reload the page and we should see that our messages are updating whenever we make changes to the list of blocks, the assigned categories or the Featured image. **Great Success!!!** 🔥🔥🔥🔥🔥🔥
 
-
+# Ready to move on?
 [Back: Section 1: Registering our plugin](./section-1.md) | [Next: Section 3: Restricting publishing](./section-3.md)
