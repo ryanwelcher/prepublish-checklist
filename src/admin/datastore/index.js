@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import apiFetch from '@wordpress/api-fetch';
 import { createReduxStore, register } from '@wordpress/data';
 
 import {
@@ -14,6 +13,7 @@ import {
 	SET_USER_PREFERENCES,
 	STORE_NAME,
 	IS_SAVING,
+	IS_LOADING,
 } from './constants';
 
 // Define our actions
@@ -80,6 +80,14 @@ const actions = {
 			},
 		};
 	},
+	setIsLoading( status ) {
+		return {
+			type: IS_LOADING,
+			payload: {
+				status,
+			},
+		};
+	},
 	saveSettings( { wordCount, requiredFeaturedImage, requiredCategory } ) {
 		return async function ( { dispatch, registry } ) {
 			dispatch.setIsSaving( true );
@@ -100,12 +108,20 @@ const actions = {
 // Define the reducer
 function reducer( state = DEFAULT_STATE, { type, payload } ) {
 	switch ( type ) {
-		case IS_SAVING:
+		case IS_SAVING: {
 			const { status } = payload;
 			return {
 				...state,
 				isSaving: status,
 			};
+		}
+		case IS_LOADING: {
+			const { status } = payload;
+			return {
+				...state,
+				isLoading: status,
+			};
+		}
 		case STATE_FROM_DATABASE:
 			return {
 				...state,
@@ -167,13 +183,20 @@ const selectors = {
 	getIsSaving( state ) {
 		return state.isSaving;
 	},
+	getIsLoading( state ) {
+		return state.isLoading;
+	},
 };
 
 const resolvers = {
 	getSettings() {
-		return async ( { dispatch } ) => {
-			const settings = await apiFetch( { path: '/wp/v2/settings' } );
+		return async ( { dispatch, registry } ) => {
+			dispatch.setIsLoading( true );
+			const settings = await registry
+				.resolveSelect( 'core' )
+				.getEntityRecord( 'root', 'site' );
 			dispatch.initSettings( settings[ 'pre-publish-checklist_data' ] );
+			dispatch.setIsLoading( false );
 		};
 	},
 	getUserPreferences() {
@@ -193,7 +216,7 @@ const store = createReduxStore( STORE_NAME, {
 	actions,
 	selectors,
 	resolvers,
-	__experimentalUseThunks: true,
+	__experimentalUseThunks: true, // Fallback for those not using WP 6.0
 } );
 
 register( store );
