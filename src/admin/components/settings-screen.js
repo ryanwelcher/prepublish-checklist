@@ -29,16 +29,16 @@ const SettingsScreen = () => {
 			isSaving: select( STORE_NAME ).getIsSaving(),
 		};
 	} );
-
 	const { saveSettings } = useDispatch( STORE_NAME );
-
-	if ( ! settingsFromState ) {
-		return <Spinner />;
-	}
 
 	return (
 		<div className="wrap">
-			<Panel header="Twitch Pre-Publish Checklist Settings">
+			<Panel
+				header={ __(
+					'Twitch Pre-Publish Checklist Settings',
+					'pre-publish-checklist'
+				) }
+			>
 				<WordCount />
 				<FeaturedImage />
 				<Category />
