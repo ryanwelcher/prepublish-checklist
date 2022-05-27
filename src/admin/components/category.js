@@ -1,7 +1,7 @@
 /**
  *  WordPress dependencies
  */
-import { ToggleControl } from '@wordpress/components';
+import { ToggleControl, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useDispatch, useSelect } from '@wordpress/data';
 
@@ -12,12 +12,16 @@ import { STORE_NAME } from '../datastore/constants';
 import SettingsSection from './settings-section';
 
 const Category = () => {
-	// Get the count from the state.
-	const requiredCategory = useSelect( ( select ) =>
-		select( STORE_NAME ).getCategoryIsRequired()
-	);
-	const userPreferences = useSelect( ( select ) =>
-		select( STORE_NAME ).getUserPreferences()
+	// Get the data from the state.
+	const { requiredCategory, userPreferences, isLoading } = useSelect(
+		( select ) => {
+			const store = select( STORE_NAME );
+			return {
+				requiredCategory: store.getCategoryIsRequired(),
+				userPreferences: store.getUserPreferences(),
+				isLoading: store.getIsLoading(),
+			};
+		}
 	);
 
 	// Update the state.
@@ -28,19 +32,23 @@ const Category = () => {
 	};
 	return (
 		<SettingsSection
-			title="Category Options"
+			title={ __( 'Category Options', 'pre-publish-checklist' ) }
 			initialOpen={ showCategory }
 			onToggle={ () => {
 				setToggleState( 'showCategory', ! showCategory );
 			} }
 		>
-			<ToggleControl
-				label={ __( 'Require Category', 'pre-publish-checklist' ) }
-				checked={ requiredCategory }
-				onChange={ () => {
-					setCategoryRequired( ! requiredCategory );
-				} }
-			/>
+			{ isLoading ? (
+				<Spinner />
+			) : (
+				<ToggleControl
+					label={ __( 'Require Category', 'pre-publish-checklist' ) }
+					checked={ requiredCategory }
+					onChange={ () => {
+						setCategoryRequired( ! requiredCategory );
+					} }
+				/>
+			) }
 		</SettingsSection>
 	);
 };
