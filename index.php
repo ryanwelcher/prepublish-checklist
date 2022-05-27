@@ -30,9 +30,7 @@ add_action( 'admin_menu', __NAMESPACE__ . '\register_plugin_settings_page' );
  */
 function render_settings_page() {
 	?>
-	<div id="twitch-pre-publish-checklist">
-		<?php esc_html_e( 'Requires JavaScript', 'pre-publish-checklist' ); ?>
-	</div>
+	<div id="twitch-pre-publish-checklist"></div>
 	<?php
 }
 
