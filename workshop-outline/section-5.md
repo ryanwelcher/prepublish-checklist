@@ -53,12 +53,12 @@ if ( requiredCategory && categories.length ) {
 ```javascript
 <WordCountDisplayComponent
 	wordCount={ wordCountDisplay }
-	required={ settings.wordCount }
+	required={ wordCount }
 />
-{ settings.requiredFeaturedImage && (
+{ requiredFeaturedImage && (
 	<FeaturedImageDisplay featuredImageID={ featuredImageID } />
 ) }
-{ settings.requiredCategory && (
+{ requiredCategory && (
 	<CategoriesDisplay categories={ categories } />
 ) }
 ```
